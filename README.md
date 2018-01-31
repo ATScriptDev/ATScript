@@ -13,3 +13,5 @@ Project is planned to be finished in 12 month from work start.
 Crowdfunding for that project: BURST-WCGB-F4SG-VKLG-GV3C4
 
 You can also donate: BURST-FAB6-RXH7-CHA3-FWUVH
+
+You can contact us: dev@atscript.net
