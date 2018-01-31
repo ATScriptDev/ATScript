@@ -20,16 +20,14 @@ Here is sample parrot ATScript contract:
 var txid = 0;
 
 AT.loop(function () {
-	//AT.getNextTx will return first tx after AT transaction 
-	txid = AT.getNextTx(txid);
-	
-	while (txid) {
+	//AT.isNextTx will return true if there is  tx after txid
+	while (AT.isNextTx(txid)) {
+		txid = AT.getNextTx(txid);
+		
 		if (AT.getTxTarget(txid) == AT.getAddress()){
 			//send money back with parrot message
 			AT.transfer(AT.getTxAmount(txid), AT.getTxSource(txid), 'Hello. This is echo message: ' + AT.getTxMessage(txid));
 		}
-		
-		txid = AT.getNextTx(txid);
 	}
 });
 ```
