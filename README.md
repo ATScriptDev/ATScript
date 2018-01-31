@@ -28,6 +28,8 @@ AT.loop(function () {
 			//send money back with parrot message
 			AT.transfer(AT.getTxAmount(txid), AT.getTxSource(txid), 'Hello. This is echo message: ' + AT.getTxMessage(txid));
 		}
+		
+		txid = AT.getNextTx(txid);
 	}
 });
 ```
