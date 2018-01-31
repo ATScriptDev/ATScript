@@ -1,10 +1,30 @@
-"# ATScript" 
+# ATScript 
 
 http://ATScript.net
 
-ATScript is programming language similar to JavaScript for BURST AT (Automated Transactions aka Smart Contracts).
+## ATScript is programming language similar to JavaScript for BURST AT (Automated Transactions aka Smart Contracts)
 
-See sample/ directory to find draft of example Smart Contracts written in ATScript
+Here is sample parrot ATScript contract:
+
+```javascript
+//Parrot ATScript - AT/SmartContract that sends back all transfered funds with message: Hello. This is echo message: <MESSAGE IN SENDING TRANSACTION>
+
+var txid = 0;
+
+AT.loop(function () {
+	//AT.getNextTx will return first tx after AT transaction 
+	txid = AT.getNextTx(txid);
+	
+	while (txid) {
+		if (AT.getTxTarget(txid) == AT.getAddress()){
+			//send money back with parrot message
+			AT.transfer(AT.getTxAmount(txid), AT.getTxSource(txid), 'Hello. This is echo message: ' + AT.getTxMessage(txid));
+		}
+	}
+});
+```
+
+See sample/ directory to find draft of other example Smart Contracts written in ATScript
 
 More info about Automated Contracts (written without ATScript) can be found at http://ciyam.org/at/
 
@@ -17,8 +37,6 @@ without ATScript: http://ciyam.org/at/at_crowdfund.html
  
 ATScript.net will have online compiler and verifier so you will be able to paste ATScript and AT address you would like to examine. Based on that ATScript.net will 
 compile provided script and verify if its machine code is the same as code of AT deployed on blockchain so you will be sure that it works as you expected.
-
-
 
 Project is planned to be finished in 12 month from work start. 
 

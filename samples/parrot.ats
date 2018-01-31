@@ -1,0 +1,15 @@
+//Parrot ATScript - AT/SmartContract that sends back all transfered funds with message: Hello. This is echo message: <MESSAGE IN SENDING TRANSACTION>
+
+var txid = 0;
+
+AT.loop(function () {
+	//AT.getNextTx will return first tx after AT transaction 
+	txid = AT.getNextTx(txid);
+	
+	while (txid) {
+		if (AT.getTxTarget(txid) == AT.getAddress()){
+			//send money back with parrot message
+			AT.transfer(AT.getTxAmount(txid), AT.getTxSource(txid), 'Hello. This is echo message: ' + AT.getTxMessage(txid));
+		}
+	}
+});
