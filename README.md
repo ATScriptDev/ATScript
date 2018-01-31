@@ -16,7 +16,7 @@ Now it is really hard to analyze what AT, that you are interacting with, is doin
 without ATScript: http://ciyam.org/at/at_crowdfund.html
  
 ATScript.net will have online compiler and verifier so you will be able to paste ATScript and AT address you would like to examine. Based on that ATScript.net will 
-compile provided script and verify if its machine code is the same as code of AT deployed on blockchain so you will be sure that id works as you expected.
+compile provided script and verify if its machine code is the same as code of AT deployed on blockchain so you will be sure that it works as you expected.
 
 
 
