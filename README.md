@@ -10,6 +10,8 @@ ATScript language will be created with well defined API and documentation. ATScr
 
 Project is planned to be finished in 12 month from work start. 
 
+PROJECT IS IN DEVELOPMENT NOW AND SOURCE CODE IS NOT YET COMPLETED!
+
 Crowdfunding for that project: BURST-WCGB-F4SG-VKLG-GV3C4
 
 You can also donate: BURST-FAB6-RXH7-CHA3-FWUVH
