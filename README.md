@@ -4,8 +4,13 @@ http://ATScript.net
 
 ## ATScript is programming language similar to JavaScript for BURST AT (Automated Transactions aka Smart Contracts)
 
+PROJECT IS UNDER DEVELOPMENT NOW AND SOURCE CODE IS NOT YET COMPLETED!
+
 Crowdfunding for that project: BURST-WCGB-F4SG-VKLG-GV3C4
+
 You can also donate: BURST-FAB6-RXH7-CHA3-FWUVH
+
+## Sample ATScript code
 
 Here is sample parrot ATScript contract:
 
@@ -42,7 +47,5 @@ ATScript.net will have online compiler and verifier so you will be able to paste
 compile provided script and verify if its machine code is the same as code of AT deployed on blockchain so you will be sure that it works as you expected.
 
 Project is planned to be finished in 12 month from work start. 
-
-PROJECT IS IN DEVELOPMENT NOW AND SOURCE CODE IS NOT YET COMPLETED!
 
 You can contact us: dev@atscript.net
