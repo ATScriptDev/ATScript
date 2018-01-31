@@ -1,5 +1,5 @@
 /*************************************************************************************
-Sample test code of ATScript for BURST AT (Automated Transactions aka Smart Contracts)
+Sample Crowdfunding AT code written in ATScript for BURST AT (Automated Transactions aka Smart Contracts)
 
 __NOT FOR USE IN PRODUCTION__  
   
@@ -17,29 +17,36 @@ var tx_source;
 var refund_time;
 
 function funded(){
+	//send all money to target_account
 	AT.transfer(balance, target_acc);
 }
 
 function refund(){
+	//find first transaction after creation of AT
 	timestamp = refund_time;
 	txid = AT.getFirstTxAfterTimestamp(timestamp);
 	timestamp = AT.getTxTimestamp(txid);
 	
+	//loop through all transaction
 	while (txid) {
 		if (AT.getTxTarget(txid) == AT.getAddress()){
+			//give back any money transfered to AT
 			tx_source = AT.getTxSource(txid);
 			tx_amt = AT.getTxAmount(txid);
 			AT.transfer(tx_amt, tx_source);
 		}
 		
+		//get next transaction
 		txid = AT.getFirstTxAfterTimestamp(timestamp);
 		timestamp = AT.getTxTimestamp(txid);
 	}
 }
 
 function makeDecision(){
+	//get current AT balance
 	balance = AT.getBalance();
 	
+	//if we don't have enough
 	if (balance < target_amt){
 		refund();
 	} else {
@@ -54,12 +61,18 @@ target_amt = 10000;
 target_acc = '...';
 
 AT.loop(function () {
+	//loop through all transactions after creation of AT
 	txid = AT.getFirstTxAfterTimestamp(timestamp);
-	timestamp = AT.getTxTimestamp(txid);
 	
-	if(timestamp > decision_time){
-		makeDecision();
-		AT.halt();
+	if (txid) {
+		//update timestamp to transaction time
+		timestamp = AT.getTxTimestamp(txid);
+		
+		//if time is up 
+		if(timestamp > decision_time){
+			makeDecision();
+			AT.halt();
+		}
 	}
 });
 

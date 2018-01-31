@@ -2,7 +2,11 @@
 
 http://ATScript.net
 
-ATScript is programming language similar to JavaScript for BURST AT (Automated Transactions aka Smart Contracts)
+ATScript is programming language similar to JavaScript for BURST AT (Automated Transactions aka Smart Contracts).
+
+See sample/ directory to find draft of example Smart Contracts written in ATScript
+
+More info about Automated Contracts can be found at http://ciyam.org/at/
 
 As part of this Project ATScript compiler will be created. It will let you compile ATScript into AT Byte Code that can be used in BURST ecosystem. 
 
