@@ -60,6 +60,7 @@ decision_time = timestamp + 14*24*60*4; //decision_time in 14 days
 target_amt = 10000;
 target_acc = '...';
 
+//loop function will be run multiple time after deployment of AT
 AT.loop(function () {
 	//loop through all transactions after creation of AT
 	txid = AT.getFirstTxAfterTimestamp(timestamp);
