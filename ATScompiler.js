@@ -1,3 +1,9 @@
+/***************************************************************************
+ATScript compiler for BURST AT (Automated Transactions aka Smart Contracts). 
+  
+  See more at http://ATScript.net
+***************************************************************************/
+
 console.log("ATScript compiler. See more at http://atscript.net");
 console.log("COPYRIGHT 2017 (c) ATScript Development Team");
 

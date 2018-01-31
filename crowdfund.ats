@@ -1,0 +1,65 @@
+/*************************************************************************************
+Sample test code of ATScript for BURST AT (Automated Transactions aka Smart Contracts)
+
+__NOT FOR USE IN PRODUCTION__  
+  
+  See more at http://ATScript.net
+**************************************************************************************/
+
+var timestamp;
+var decision_time;
+var txid;
+var tx_amt;
+var target_amt;
+var target_acc;
+var balance;
+var tx_source;
+var refund_time;
+
+function funded(){
+	AT.transfer(balance, target_acc);
+}
+
+function refund(){
+	timestamp = refund_time;
+	txid = AT.getFirstTxAfterTimestamp(timestamp);
+	timestamp = AT.getTxTimestamp(txid);
+	
+	while (txid) {
+		if (AT.getTxTarget(txid) == AT.getAddress()){
+			tx_source = AT.getTxSource(txid);
+			tx_amt = AT.getTxAmount(txid);
+			AT.transfer(tx_amt, tx_source);
+		}
+		
+		txid = AT.getFirstTxAfterTimestamp(timestamp);
+		timestamp = AT.getTxTimestamp(txid);
+	}
+}
+
+function makeDecision(){
+	balance = AT.getBalance();
+	
+	if (balance < target_amt){
+		refund();
+	} else {
+		funded();
+	}
+}
+
+timestamp = AT.getBlockTimestamp();
+refund_time = timestamp;
+decision_time = timestamp + 14*24*60*4; //decision_time in 14 days
+target_amt = 10000;
+target_acc = '...';
+
+AT.loop(function () {
+	txid = AT.getFirstTxAfterTimestamp(timestamp);
+	timestamp = AT.getTxTimestamp(txid);
+	
+	if(timestamp > decision_time){
+		makeDecision();
+		AT.halt();
+	}
+});
+
