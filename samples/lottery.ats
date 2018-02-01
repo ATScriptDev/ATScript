@@ -1,5 +1,13 @@
-//Lottery ATScript - AT/SmartContract that every 24 hours sends back all funds to one "random" transaction sender 
-//note that this choice is not realy random and miners can somehow manipulate it by changing block hash
+/***************************************************************************************************************
+
+Lottery ATScript - AT/SmartContract that every 24 hours sends back all funds to one "random" transaction sender 
+
+Please note that this choice is not realy random and miners can somehow manipulate it by changing block hash
+
+Compare this ATScript to its functional equivalent written in AT assembler at 
+http://ciyam.org/at/at_lottery.html to see why ATScript is needed
+
+****************************************************************************************************************/
 
 var lastReward = AT.getBlockTimestamp();
 var bestTxid, bestTicket;

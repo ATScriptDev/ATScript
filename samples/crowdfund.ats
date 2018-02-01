@@ -4,6 +4,10 @@ Sample Crowdfunding AT code written in ATScript for BURST AT (Automated Transact
 __NOT FOR USE IN PRODUCTION__  
   
   See more at http://ATScript.net
+
+Compare this ATScript to its functional equivalent written in AT assembler 
+at http://ciyam.org/at/at_crowdfund.html to see why ATScript is needed
+
 **************************************************************************************/
 
 var timestamp;
