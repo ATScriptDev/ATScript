@@ -1,0 +1,30 @@
+//Lottery ATScript - AT/SmartContract that every 24 hours sends back all funds to one "random" transaction sender 
+//note that this choise is not realy random and miners can somehow manipulate that value by changing block hash
+
+var lastReward = AT.getBlockTimestamp();
+var txid, lastTxid, lastBlock;
+var bestTxid, bestTicket;
+var amnt = 0;
+
+AT.setInterval(function () {
+		bestTxid = 0;
+		bestTicket = 999999999999999;
+		amnt = 0;
+		
+		//for each transaction between lastReward and block before previous block
+		AT.foreachTx(lastReward, AT.getBlockTimestamp(-2), function(txid){
+			if (AT.getTxTarget(txid) == AT.getAddress()){
+				amnt += AT.getTxAmount(txid);
+				
+				if (bestTicket > AT.getTicket(txid)){
+					bestTicket = AT.getTicket(txid);
+					bestTxid = txid;
+				}
+			}
+		}
+		
+		AT.transfer(amnt, AT.getTxSource(bestTxid));
+		lastReward = AT.getBlockTimestamp(-1);
+	},
+	60*24/4 //every 24h (new block is every 4 minutes)
+);
