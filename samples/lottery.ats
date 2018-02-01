@@ -2,13 +2,12 @@
 //note that this choice is not realy random and miners can somehow manipulate it by changing block hash
 
 var lastReward = AT.getBlockTimestamp();
-var txid, lastTxid, lastBlock;
 var bestTxid, bestTicket;
 var amnt = 0;
 
 AT.setInterval(function () {
 		bestTxid = 0;
-		bestTicket = 999999999999999;
+		bestTicket = MAX_INT;
 		amnt = 0;
 		
 		//for each transaction between lastReward and block before previous block
@@ -21,7 +20,7 @@ AT.setInterval(function () {
 					bestTxid = txid;
 				}
 			}
-		}
+		});
 		
 		AT.transfer(amnt, AT.getTxSource(bestTxid));
 		lastReward = AT.getBlockTimestamp(-1);
