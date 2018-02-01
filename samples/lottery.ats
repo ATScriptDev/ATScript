@@ -3,6 +3,7 @@
 
 var lastReward = AT.getBlockTimestamp();
 var bestTxid, bestTicket;
+var min_amount = 100;
 var amnt = 0;
 
 AT.setInterval(function () {
@@ -15,14 +16,18 @@ AT.setInterval(function () {
 			if (AT.getTxTarget(txid) == AT.getAddress()){
 				amnt += AT.getTxAmount(txid);
 				
-				if (bestTicket > AT.getTicket(txid)){
+				//choose only from transaction that are at least min_amount
+				if ((bestTicket > AT.getTicket(txid)) && (AT.getTxAmount(txid) >= min_amount)){
 					bestTicket = AT.getTicket(txid);
 					bestTxid = txid;
 				}
 			}
 		});
 		
-		AT.transfer(amnt, AT.getTxSource(bestTxid));
+		if (bestTxid != 0){
+			AT.transfer(amnt, AT.getTxSource(bestTxid));
+		}
+		
 		lastReward = AT.getBlockTimestamp(-1);
 	},
 	60*24/4 //every 24h (new block is every 4 minutes)
