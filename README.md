@@ -34,7 +34,10 @@ AT.loop(function () {
 
 See sample/ directory to find draft of other example Smart Contracts written in ATScript
 
-More info about Automated Contracts (written without ATScript) can be found at http://ciyam.org/at/
+More info about Automated Contracts (written without ATScript) can be found at:
+- CIYAM work about AT: http://ciyam.org/at/
+- BurstAT wiki: https://github.com/antonyip/BurstAT/wiki
+- BurstJack webpage and tools related to AT: http://atburst.synergize.co/content.php
 
 As part of this Project ATScript compiler will be created. It will let you compile ATScript into AT Byte Code that can be used in BURST ecosystem. 
 
